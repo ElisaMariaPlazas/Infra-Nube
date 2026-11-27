@@ -1,3 +1,4 @@
+
 name: Backup Git to Google Drive
 
 on:
@@ -49,6 +50,6 @@ jobs:
           DATE=$(date -u +'%Y-%m-%d_%H-%M-%S')
           rclone copyto \
             backup/Infra-Nube.bundle \
-            "gdrive:Infra-Nube-${DATE}.bundle" \
+            "gdrive:respaldos-git/Infra-Nube-${DATE}.bundle" \
             --drive-root-folder-id "$FOLDER_ID" \
             --retries 3
