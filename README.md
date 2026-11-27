@@ -7,7 +7,7 @@ Hackatón EstudIA, reto **Nube e infraestructura (nivel básico)**. Ruta Local e
 | **Sitio publicado** | https://elisamariaplazas.github.io/Infra-Nube/ *(activo cuando se configure GitHub Pages)* |
 | **Versión actual** | v1.0.0 |
 | **Alojamiento** | GitHub Pages, publicando desde la carpeta `/docs` de la rama `main` |
-| **Copia independiente** | Carpeta compartida de Google Drive *[[completar nombre](https://drive.google.com/drive/u/0/folders/1jP68pFf-XYG8jMn78bTDbomJ8X0OqmXj)]* |
+| **Copia independiente** | Carpeta compartida de Google Drive *[Respaldo Drive](https://drive.google.com/drive/u/0/folders/1jP68pFf-XYG8jMn78bTDbomJ8X0OqmXj)]* |
 
 ## Estructura del repositorio
 
