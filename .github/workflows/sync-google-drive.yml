@@ -1,0 +1,49 @@
+
+name: Sincronizar Ruta Local con Google Drive
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar Rclone
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y rclone
+
+      - name: Configurar Google Drive
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GDRIVE_SERVICE_ACCOUNT_JSON }}
+          DRIVE_FOLDER_ID: ${{ secrets.GDRIVE_FOLDER_ID }}
+        run: |
+          mkdir -p ~/.config/rclone
+
+          printf '%s' "$GOOGLE_CREDENTIALS" > /tmp/gdrive.json
+
+          cat > ~/.config/rclone/rclone.conf <<EOF
+          [gdrive]
+          type = drive
+          scope = drive
+          service_account_file = /tmp/gdrive.json
+          root_folder_id = ${DRIVE_FOLDER_ID}
+          EOF
+
+      - name: Sincronizar archivos
+        run: |
+          rclone sync . gdrive: \
+            --exclude ".git/**" \
+            --exclude ".github/**" \
+            --verbose
+
+      - name: Limpiar credenciales
+        if: always()
+        run: rm -f /tmp/gdrive.json
